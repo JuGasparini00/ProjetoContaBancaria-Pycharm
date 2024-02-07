@@ -30,7 +30,7 @@ cursor.execute('''
 # Comitando as alterações
 conn.commit()
 
-# Obter os dados da conta
+# Obtem os dados da conta
 id_cliente = cursor.lastrowid
 id_conta = input("Digite o ID da conta: ")
 tipo_conta = input("Digite o tipo de conta: ")
@@ -38,7 +38,7 @@ agencia = input("Digite a agência: ")
 numero_conta = input("Digite o número da conta: ")
 saldo = float(input("Digite o saldo: "))
 
-# Criando a tabela "Conta" (caso não exista)
+# Cria a tabela "Conta" (caso não exista)
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS Conta (
         id_cliente INTEGER,
@@ -51,7 +51,7 @@ cursor.execute('''
     )
 ''')
 
-# Inserindo os dados da conta na tabela "Conta"
+# Insere os dados da conta na tabela "Conta"
 cursor.execute('''
     INSERT INTO Conta (id_cliente, id, tipo, agencia, numero, saldo)
     VALUES (?, ?, ?, ?, ?, ?)
@@ -68,7 +68,7 @@ cursor.execute('''
 ''')
 resultados = cursor.fetchall()
 
-# Imprimindo os resultados
+# Imprime os resultados
 print("Dados dos Clientes e suas Contas:")
 for resultado in resultados:
     print("ID do Cliente:", resultado[0])
@@ -85,5 +85,5 @@ for resultado in resultados:
         print("Cliente não possui conta associada")
     print("-------------------------")
 
-# Fechando a conexão
+# Fecha a conexão
 conn.close()
