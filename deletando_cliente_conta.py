@@ -1,15 +1,15 @@
 import sqlite3
 
-# Conectando ao banco de dados
+# Conecta ao banco de dados
 conn = sqlite3.connect('desafio_dio.db')
 
-# Criando um objeto cursor
+# Cria um objeto cursor
 cursor = conn.cursor()
 
-# Obter o ID da conta a ser apagada
+# Obtem o ID da conta a ser apagada
 id_conta = int(input("Digite o ID da conta que deseja apagar: "))
 
-# Verificar se a conta existe
+# Verifica se a conta existe
 cursor.execute("SELECT * FROM Conta WHERE id = ?", (id_conta,))
 conta = cursor.fetchone()
 
@@ -18,10 +18,10 @@ if conta is None:
 else:
     id_cliente = conta[1]
     
-    # Apagar a conta
+    # Apaga a conta
     cursor.execute("DELETE FROM Conta WHERE id = ?", (id_conta,))
     
-    # Verificar se o cliente associado à conta possui outras contas
+    # Verifica se o cliente associado à conta possui outras contas
     cursor.execute("SELECT * FROM Conta WHERE id_cliente = ?", (id_cliente,))
     outras_contas = cursor.fetchall()
     
